@@ -24,7 +24,7 @@ DFLAGS = -ggdb -O0
 GAME_REPO= https://github.com/Anders1232/TowersOfMadnessGame.git
 ENGINE_REPO= https://github.com/Anders1232/RattletrapEngine.git
 
-GAME_PATH= ProjetoDefenseGame
+GAME_PATH= TowersOfMadnessGame
 ENGINE_PATH= RattletrapEngine
 
 GAME_INC_PATH = -I$(GAME_PATH)/include
