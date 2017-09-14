@@ -1,3 +1,7 @@
+RattletrapEngine/include/BaseTile.h
+RattletrapEngine/include/NearestFinder.h
+RattletrapEngine/include/TilesetV2.h
+RattletrapEngine/src/TilesetV2.cpp
 TowersOfMadnessGame/src/Obstacle.cpp
 TowersOfMadnessGame/src/PlayerData.cpp
 TowersOfMadnessGame/src/Shooter.cpp
