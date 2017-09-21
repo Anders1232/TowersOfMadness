@@ -59,7 +59,7 @@ RM = del
 MAKE = mingw32-make
 
 #path da SDL
-SDL_PATH = C:/Tools/msys64/mingw64
+SDL_PATH = C:/SDL2/x86_64-w64-mingw32
 INC_PATH += -I$(SDL_PATH)/include/SDL2
 FLAGS += -mwindows
 DFLAGS +=  -mconsole
