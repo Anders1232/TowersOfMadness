@@ -11,14 +11,12 @@ CD = cd
 #comando para executar o make
 MAKE = make
 
-#Flags para geração automática de dependências
-DEP_FLAGS = -MT $@ -MMD -MP -MF $(DEP_PATH)/$.d
 LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lm
+LINK_PATH =
 
 #Se o gcc não reconhecer a flag -fdiagnostics-color basta retirar ela
 # FLAGS= -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -fdiagnostics-color -static-libgcc -static-libstdc++ -Werror=init-self
-#FLAGS= -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -fdiagnostics-color -Werror=init-self
- FLAGS= -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -Werror=init-self
+FLAGS= -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -fdiagnostics-color=auto -Werror=init-self
 DFLAGS = -ggdb -O0
 
 GAME_REPO= https://github.com/Anders1232/TowersOfMadnessGame.git
@@ -27,22 +25,21 @@ ENGINE_REPO= https://github.com/Anders1232/RattletrapEngine.git
 GAME_PATH= TowersOfMadnessGame
 ENGINE_PATH= RattletrapEngine
 
-GAME_INC_PATH = -I$(GAME_PATH)/include
+GAME_INC_PATH = $(GAME_PATH)/include
 GAME_SRC_PATH = $(GAME_PATH)/src
 GAME_BIN_PATH = $(GAME_PATH)/bin
 GAME_DEP_PATH = $(GAME_PATH)/dep
-ENGINE_INC_PATH = -I$(ENGINE_PATH)/include
+ENGINE_INC_PATH = $(ENGINE_PATH)/include
 ENGINE_SRC_PATH = $(ENGINE_PATH)/src
 ENGINE_BIN_PATH = $(ENGINE_PATH)/bin
 ENGINE_DEP_PATH = $(ENGINE_PATH)/dep
 
 #Uma lista de arquivos por extensão:
-GAME_CPP_FILES= $(wildcard $(GAME_SRC_PATH)/*.cpp)
+GAME_CPP_FILES = $(wildcard $(GAME_SRC_PATH)/*.cpp)
 GAME_OBJ_FILES= $(addprefix $(GAME_BIN_PATH)/,$(notdir $(GAME_CPP_FILES:.cpp=.o)))
-GAME_DEP_FILES = $(wildcard $(GAME_DEP_PATH)/*.d)
-ENGINE_CPP_FILES= $(wildcard $(ENGINE_SRC_PATH)/*.cpp)
+
+ENGINE_CPP_FILES = $(wildcard $(ENGINE_SRC_PATH)/*.cpp)
 ENGINE_OBJ_FILES= $(addprefix $(ENGINE_BIN_PATH)/,$(notdir $(ENGINE_CPP_FILES:.cpp=.o)))
-ENGINE_DEP_FILES = $(wildcard $(ENGINE_DEP_PATH)/*.d)
 
 #Nome do executável
 EXEC = JOGO
@@ -59,11 +56,10 @@ RM = del
 MAKE = mingw32-make
 
 #path da SDL
-SDL_PATHS = C:/SDL2/x86_64-w64-mingw32
-EXTRA_SDL_PATHS = $(addsuffix /include/SDL2,$(SDL_PATHS))
-INC_PATH += $(addprefix -I,$(SDL_PATHS) $(EXTRA_SDL_PATHS))
+SDL_PATHS = C:/SDL2/x86_64-w64-mingw32 C:/Tools/msys64/mingw64
+LINK_PATH = $(addprefix -L,$(addsuffix /lib,$(SDL_PATHS)))
 FLAGS += -mwindows
-DFLAGS +=  -mconsole
+DFLAGS += -mconsole
 LIBS := -lmingw32 -lSDL2main $(LIBS)
 
 #Nome do executável
@@ -86,22 +82,22 @@ endif
 all: $(EXEC)
 
 $(EXEC): $(ENGINE_OBJ_FILES) $(GAME_OBJ_FILES)
-	$(COMPILER) -o $@ $^ $(LIBS) $(FLAGS)
+	$(COMPILER) -o $@ $^ $(LINK_PATH) $(LIBS) $(FLAGS)
 
 
 .PHONY: $(ENGINE_BIN_PATH)/%.o
-$(ENGINE_BIN_PATH)/%.o: $(ENGINE_SRC_PATH)/%.cpp
-	$(CD) $(ENGINE_PATH) && $(MAKE) $(DEBUG_OU_RELEASE) objects
+$(ENGINE_BIN_PATH)/%.o:
+	@$(CD) $(ENGINE_PATH) && $(MAKE) $(DEBUG_OU_RELEASE)
 
 .PHONY: $(GAME_BIN_PATH)/%.o
-$(GAME_BIN_PATH)/%.o: $(GAME_SRC_PATH)/%.cpp
-	$(CD) $(GAME_PATH) && $(MAKE) $(DEBUG_OU_RELEASE) objects
+$(GAME_BIN_PATH)/%.o:
+	@$(CD) $(GAME_PATH) && $(MAKE) $(DEBUG_OU_RELEASE)
 
 
 clean:
-	$(CD) $(ENGINE_PATH) && $(MAKE) clean
-	$(CD) $(GAME_PATH) && $(MAKE) clean
-	$(RM) $(EXEC)
+	-@$(CD) $(ENGINE_PATH) && $(MAKE) clean
+	-@$(CD) $(GAME_PATH) && $(MAKE) clean
+	-$(RM) $(EXEC)
 
 .PHONY: debug clean release again init commit pull doc reset status
 #regra pra debug
@@ -157,4 +153,3 @@ reset:
 status:
 	-$(CD) $(ENGINE_PATH) && git status
 	-$(CD) $(GAME_PATH) && git status
-
