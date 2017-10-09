@@ -129,7 +129,7 @@ help:
 init:
 	-git clone $(ENGINE_REPO)
 	-git clone $(GAME_REPO)
-	@echo CUIDADO os resitórios estão na branch master
+	@echo CUIDADO os repositórios estão na branch master
 
 commit:
 	-$(CD) $(ENGINE_PATH) && git commit
