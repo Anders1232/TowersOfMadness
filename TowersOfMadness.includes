@@ -2,5 +2,6 @@ RattletrapEngine/include
 Game/include
 
 TowersOfMadnessGame/include
-TowersOfMadnessGame/src
 RattletrapEngine/src
+RattletrapEngine/FowardList
+TowersOfMadnessGame/src

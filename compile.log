@@ -1,0 +1,47 @@
+make[1]: Entering directory '/home/francisco/Documentos/Git/TowersOfMadness/RattletrapEngine'
+rm -rdf dep
+rm -rdf bin
+make[1]: Leaving directory '/home/francisco/Documentos/Git/TowersOfMadness/RattletrapEngine'
+make[1]: Entering directory '/home/francisco/Documentos/Git/TowersOfMadness/TowersOfMadnessGame'
+rm -rf bin dep
+rm -f JOGO
+make[1]: Leaving directory '/home/francisco/Documentos/Git/TowersOfMadness/TowersOfMadnessGame'
+rm -f JOGO
+make[1]: Entering directory '/home/francisco/Documentos/Git/TowersOfMadness/RattletrapEngine'
+g++ -Iinclude -IForwardList -IFowardList src/State.cpp -M -MT bin/State.o -MP -MF dep/State.d
+g++ -Iinclude -IForwardList -IFowardList src/State.cpp -c -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -Werror=init-self -ggdb -O0 -o bin/State.o
+g++ -Iinclude -IForwardList -IFowardList src/Sound.cpp -M -MT bin/Sound.o -MP -MF dep/Sound.d
+g++ -Iinclude -IForwardList -IFowardList src/Sound.cpp -c -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -Werror=init-self -ggdb -O0 -o bin/Sound.o
+g++ -Iinclude -IForwardList -IFowardList src/Color.cpp -M -MT bin/Color.o -MP -MF dep/Color.d
+g++ -Iinclude -IForwardList -IFowardList src/Color.cpp -c -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -Werror=init-self -ggdb -O0 -o bin/Color.o
+g++ -Iinclude -IForwardList -IFowardList src/Threading.cpp -M -MT bin/Threading.o -MP -MF dep/Threading.d
+g++ -Iinclude -IForwardList -IFowardList src/Threading.cpp -c -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -Werror=init-self -ggdb -O0 -o bin/Threading.o
+g++ -Iinclude -IForwardList -IFowardList src/Resources.cpp -M -MT bin/Resources.o -MP -MF dep/Resources.d
+g++ -Iinclude -IForwardList -IFowardList src/Resources.cpp -c -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -Werror=init-self -ggdb -O0 -o bin/Resources.o
+g++ -Iinclude -IForwardList -IFowardList src/ManhattanDistance.cpp -M -MT bin/ManhattanDistance.o -MP -MF dep/ManhattanDistance.d
+g++ -Iinclude -IForwardList -IFowardList src/ManhattanDistance.cpp -c -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5 -Wno-unused-parameter -Werror=init-self -ggdb -O0 -o bin/ManhattanDistance.o
+In file included from include/ManhattanDistance.h:4:0,
+                 from src/ManhattanDistance.cpp:1:
+include/TileMap.h:265:4: error: prototype for ‘T* TileMap<T>::FindNearest(Vec2, Finder<T>&, float) const’ does not match any in class ‘TileMap<T>’
+ T* TileMap<T>::FindNearest(Vec2 origin, Finder<T> &finder, float range) const{
+    ^~~~~~~~~~
+In file included from include/ManhattanDistance.h:4:0,
+                 from src/ManhattanDistance.cpp:1:
+include/TileMap.h:57:6: error: candidate is: T* TileMap<T>::FindNearest(Vec2, Finder<T>, float) const
+   T* FindNearest(Vec2 origin, Finder<T> finder, float range= std::numeric_limits<float>::max()) const;
+      ^~~~~~~~~~~
+In file included from include/ManhattanDistance.h:4:0,
+                 from src/ManhattanDistance.cpp:1:
+include/TileMap.h:279:18: error: prototype for ‘std::vector<T*>* TileMap<T>::FindNearests(Vec2, Finder<T>&, float) const’ does not match any in class ‘TileMap<T>’
+ std::vector<T*>* TileMap<T>::FindNearests(Vec2 origin, Finder<T> &finder, float range) const{
+                  ^~~~~~~~~~
+In file included from include/ManhattanDistance.h:4:0,
+                 from src/ManhattanDistance.cpp:1:
+include/TileMap.h:58:20: error: candidate is: std::vector<T*>* TileMap<T>::FindNearests(Vec2, Finder<T>, float) const
+   std::vector<T*>* FindNearests(Vec2 origin, Finder<T> finder, float range= std::numeric_limits<float>::max()) const;
+                    ^~~~~~~~~~~~
+makefile:86: recipe for target 'bin/ManhattanDistance.o' failed
+make[1]: *** [bin/ManhattanDistance.o] Error 1
+make[1]: Leaving directory '/home/francisco/Documentos/Git/TowersOfMadness/RattletrapEngine'
+makefile:90: recipe for target 'RattletrapEngine/bin/State.o' failed
+make: *** [RattletrapEngine/bin/State.o] Error 2
