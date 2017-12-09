@@ -34,3 +34,7 @@
 #Pastas dos outros projetos:
 TowersOfMadnessGame/
 RattletrapEngine/
+
+#arquvos do qt que dependem de máquina
+*.user
+
