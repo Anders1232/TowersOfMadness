@@ -11,7 +11,7 @@ CD = cd
 #comando para executar o make
 MAKE = make
 
-LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lm
+LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lm -lpthread
 LINK_PATH =
 
 #Se o gcc não reconhecer a flag -fdiagnostics-color basta retirar ela
