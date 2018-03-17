@@ -79,19 +79,10 @@ LIBS = -lm -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framewor
 endif
 endif
 
-all: $(EXEC)
-
-$(EXEC): $(ENGINE_OBJ_FILES) $(GAME_OBJ_FILES)
-	$(COMPILER) -o $@ $^ $(LINK_PATH) $(LIBS) $(FLAGS)
-
-
-.PHONY: $(ENGINE_BIN_PATH)/%.o
-$(ENGINE_BIN_PATH)/%.o:
+all:
 	@$(CD) $(ENGINE_PATH) && $(MAKE) $(DEBUG_OU_RELEASE)
-
-.PHONY: $(GAME_BIN_PATH)/%.o
-$(GAME_BIN_PATH)/%.o:
 	@$(CD) $(GAME_PATH) && $(MAKE) $(DEBUG_OU_RELEASE)
+	$(COMPILER) -o $(EXEC) $(ENGINE_OBJ_FILES) $(GAME_OBJ_FILES) $(LINK_PATH) $(LIBS) $(FLAGS)
 
 
 clean:
