@@ -38,3 +38,7 @@ RattletrapEngine/
 #arquvos do qt que dependem de máquina
 *.user
 
+#executável
+JOGO
+JOGO.exe
+
